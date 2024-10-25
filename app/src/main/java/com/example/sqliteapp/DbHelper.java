@@ -60,27 +60,46 @@ public class DbHelper extends SQLiteOpenHelper {
 
         if (cursor.getCount() > 0) {
 
-            cursor.moveToNext();
-            Person person = new Person(
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3));
-            person.setId(cursor.getInt(0));
+           while(cursor.moveToNext()) {
+               Person person = new Person(
+                       cursor.getString(1),
+                       cursor.getString(2),
+                       cursor.getString(3));
+               person.setId(cursor.getInt(0));
+               return person;
+           }
 
-            return person;
         }
         return null;
     }
 
-    public Boolean insertData(Person person){
+    public Boolean insertData(Person person) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues content= new ContentValues();
-        content.put("name",person.getName());
-        content.put("email",person.getEmail());
-        content.put("image",person.getImage());
+        ContentValues content = new ContentValues();
+        content.put("name", person.getName());
+        content.put("email", person.getEmail());
+        content.put("image", person.getImage());
 
-        long result= db.insert("people",null,content);
-        return result==-1?false:true;
+        long result = db.insert("people", null, content);
+        return result == -1 ? false : true;
+    }
+
+    public Boolean updateData(Person person) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues content = new ContentValues();
+        content.put("name", person.getName());
+        content.put("email", person.getEmail());
+        content.put("image", person.getImage());
+
+        long result = db.update("people", content,"_id=?", new String[]{person.getId()+""});
+        return result == -1 ? false : true;
+    }
+    public Boolean deleteData(Person person) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long result = db.delete("people", "_id=?", new String[]{person.getId()+""});
+        return result == -1 ? false : true;
     }
 }

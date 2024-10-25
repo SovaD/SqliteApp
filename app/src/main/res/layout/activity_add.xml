@@ -42,6 +42,7 @@
             android:layout_height="70dp"
             android:id="@+id/btnLoadImage"
             android:src="@drawable/pen"
+            android:background="@null"
             android:scaleType="fitCenter"/>
     </LinearLayout>
     <Button

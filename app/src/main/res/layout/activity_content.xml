@@ -40,14 +40,16 @@
         android:id="@+id/imageLayout"
         android:layout_below="@+id/etEmail">
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
             android:id="@+id/imageView"
             android:scaleType="fitCenter"/>
         <ImageButton
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:id="@+id/btnLoadImage"
+            android:scaleType="fitCenter"
+            android:background="@null"
             android:src="@drawable/pen"/>
     </LinearLayout>
 
@@ -63,12 +65,14 @@
             android:layout_height="70dp"
             android:src="@drawable/save"
             android:scaleType="fitCenter"
+            android:background="@null"
             android:id="@+id/btnSave"/>
         <ImageButton
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/delete"
             android:scaleType="fitCenter"
+            android:background="@null"
             android:id="@+id/btnDelete"/>
 
     </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.sqliteapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -50,8 +51,29 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent =  new Intent(getApplicationContext(),
+                        ContentActivity.class);
+                Person person = (Person) parent.getAdapter().getItem(position);
+                intent.putExtra("key",person);
+                startActivity(intent);
+            }
+        });
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ItemAdapter adapter= new ItemAdapter(this,
+                db.getData());
+        listView.setAdapter(adapter);
+
+    }
+
     void fillData()
     {
         List<Person> people = new ArrayList<>(Arrays.asList(
